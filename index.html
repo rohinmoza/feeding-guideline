@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Heart Center Infant Feeding Guideline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #6629B7;
+    --primary-dark: #4F1F8F;
+    --primary-light: #8B5FCF;
+    --primary-muted: #F3EEFB;
+    --primary-subtle: #E8DDF5;
+    --accent: #ED2939;
+    --accent-muted: #FEF0F1;
+    --accent-border: #F8A0A8;
+    --dark: #2C2C2C;
+    --dark-secondary: #4A4A4A;
+    --neutral: #E5E5E5;
+    --neutral-light: #F5F5F5;
+    --neutral-medium: #D0D0D0;
+    --white: #FFFFFF;
+    --text-primary: #2C2C2C;
+    --text-secondary: #6B6B6B;
+    --text-tertiary: #8F8F8F;
+    --success: #1A7A4C;
+    --success-bg: #EEF7F2;
+    --shadow-sm: 0 1px 2px rgba(44,44,44,0.04);
+    --radius: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--neutral-light);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-bottom: 80px;
+  }
+
+  .header {
+    background: var(--dark);
+    color: var(--white);
+    padding: 24px 20px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-rule {
+    width: 40px;
+    height: 3px;
+    background: var(--accent);
+    border: none;
+    margin-bottom: 14px;
+    border-radius: 2px;
+  }
+  .header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .header p {
+    font-size: 13px;
+    color: var(--neutral);
+    font-weight: 400;
+  }
+
+  .tab-nav {
+    display: flex;
+    background: var(--white);
+    border-bottom: 1px solid var(--neutral);
+    position: sticky;
+    top: 76px;
+    z-index: 99;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 6px 12px;
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    border-bottom: 2.5px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .tab-btn.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+  }
+
+  .tab-content { display: none; padding: 16px; max-width: 540px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--neutral);
+    margin-bottom: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .card-header {
+    padding: 11px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-header.dark { background: var(--dark); color: var(--white); }
+  .card-header.primary { background: var(--primary); color: var(--white); }
+  .card-header.accent {
+    background: var(--white);
+    color: var(--accent);
+    border-bottom: 1px solid var(--neutral);
+  }
+  .card-header.accent::before {
+    content: '';
+    width: 3px;
+    height: 16px;
+    background: var(--accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .card-header.success {
+    background: var(--white);
+    color: var(--success);
+    border-bottom: 1px solid var(--neutral);
+  }
+  .card-header.success::before {
+    content: '';
+    width: 3px;
+    height: 16px;
+    background: var(--success);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .card-body { padding: 16px; }
+
+  .flow-step {
+    position: relative;
+    padding: 14px 16px 14px 46px;
+    border-bottom: 1px solid var(--neutral-light);
+    min-height: 52px;
+  }
+  .flow-step:last-child { border-bottom: none; }
+  .flow-step-num {
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--primary-muted);
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--primary-subtle);
+  }
+  .flow-step-num.goal {
+    background: var(--success-bg);
+    color: var(--success);
+    border-color: #B8DECA;
+  }
+  .flow-connector {
+    position: absolute;
+    left: 25px;
+    top: 38px;
+    bottom: -2px;
+    width: 1.5px;
+    background: var(--neutral);
+  }
+  .flow-step:last-child .flow-connector { display: none; }
+  .flow-step-label {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+  .flow-step-detail {
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    margin-top: 2px;
+    line-height: 1.45;
+  }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .callout.intolerance {
+    background: var(--white);
+    border: 1.5px solid var(--primary-light);
+    border-left: 4px solid var(--primary);
+  }
+  .callout.intolerance strong { color: var(--primary); }
+  .callout.intolerance li {
+    margin-left: 16px;
+    margin-top: 6px;
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .callout.exception {
+    background: var(--accent-muted);
+    border: 1.5px solid var(--accent);
+    border-left: 4px solid var(--accent);
+  }
+  .callout-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .callout.exception p { color: var(--dark); font-size: 12.5px; }
+  .callout.exception strong { color: var(--accent); }
+
+  .adv-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .adv-table thead th {
+    padding: 10px 6px;
+    font-weight: 700;
+    font-size: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .adv-table thead tr:first-child th {
+    background: var(--dark);
+    color: var(--white);
+    border-right: 1px solid var(--dark-secondary);
+  }
+  .adv-table thead tr:first-child th:last-child { border-right: none; }
+  .adv-table thead tr:nth-child(2) th {
+    background: var(--neutral-light);
+    color: var(--text-secondary);
+    font-size: 9.5px;
+    padding: 6px;
+    border-bottom: 1px solid var(--neutral);
+  }
+  .adv-table td {
+    padding: 8px 6px;
+    text-align: center;
+    border-bottom: 1px solid var(--neutral-light);
+    font-size: 12.5px;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .adv-table tr:nth-child(even) td { background: rgba(245,245,245,0.5); }
+  .adv-table .goal-row td {
+    background: var(--success-bg) !important;
+    font-weight: 700;
+    color: var(--success);
+  }
+  .adv-table .note-row td {
+    font-size: 11px;
+    color: var(--primary);
+    font-weight: 700;
+    background: var(--primary-muted) !important;
+    text-align: left;
+    padding-left: 12px;
+  }
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -16px; padding: 0 16px; }
+  .table-footnote { font-size: 11px; color: var(--text-tertiary); text-align: right; margin-top: 8px; padding-right: 4px; font-style: italic; }
+
+  .vitals-box {
+    background: var(--accent-muted);
+    border: 1.5px solid var(--accent-border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .vitals-box-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .vitals-box-subtitle {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 4px;
+  }
+  .vitals-item { font-size: 12.5px; color: var(--text-primary); padding: 3px 0; line-height: 1.5; }
+  .vitals-alert { margin-top: 8px; font-weight: 600; color: var(--accent); font-size: 12.5px; }
+
+  .intol-item {
+    font-size: 13px;
+    color: var(--text-primary);
+    padding: 5px 0 5px 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .intol-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 5px;
+    height: 1.5px;
+    background: var(--neutral-medium);
+  }
+  .intol-item.highlight { color: var(--accent); font-weight: 600; }
+  .intol-item.highlight::before { background: var(--accent); }
+
+  .criteria-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--neutral-light);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .criteria-item:last-child { border-bottom: none; }
+  .criteria-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-weight: 700;
+  }
+  .criteria-icon.green { background: var(--success-bg); color: var(--success); border: 1.5px solid #B8DECA; }
+
+  .pill-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .pill {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .pill.include { background: var(--primary-muted); color: var(--primary-dark); border: 1px solid var(--primary-subtle); }
+  .pill.exclude { background: var(--accent-muted); color: var(--accent); border: 1px solid var(--accent-border); }
+
+  .sub-label { font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; }
+
+  .footer { text-align: center; padding: 28px 16px 8px; }
+  .footer-rule { width: 30px; height: 2px; background: var(--accent); border: none; margin: 0 auto 10px; border-radius: 1px; }
+  .footer-text { font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.02em; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <hr class="header-rule">
+  <h1>Infant Feeding Guideline</h1>
+  <p>Postoperative &amp; Non-Surgical Populations</p>
+</div>
+
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('protocol')">Protocol</button>
+  <button class="tab-btn" onclick="showTab('table')">Volumes</button>
+  <button class="tab-btn" onclick="showTab('intolerance')">Intolerance</button>
+  <button class="tab-btn" onclick="showTab('criteria')">Criteria</button>
+</nav>
+
+<!-- PROTOCOL -->
+<div id="tab-protocol" class="tab-content active">
+  <div class="card">
+    <div class="card-header dark">Advancement Pathway</div>
+    <div class="card-body" style="padding:4px 0;">
+      <div class="flow-step">
+        <div class="flow-step-num">1</div>
+        <div class="flow-connector"></div>
+        <div class="flow-step-label">Initiate TPN / SMOF</div>
+        <div class="flow-step-detail">Goal 60 kcal/kg/day</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">2</div>
+        <div class="flow-connector"></div>
+        <div class="flow-step-label">Start Enteral Feeds</div>
+        <div class="flow-step-detail">BM / DBM / Pepticate 20 kcal/oz<br>20 mL/kg/day q3h · PO or PO/NG over 1 hr</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">3</div>
+        <div class="flow-connector"></div>
+        <div class="flow-step-label">Advance 20 mL/kg/day q24h</div>
+        <div class="flow-step-detail">Continue until reaching 60 mL/kg/day</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">4</div>
+        <div class="flow-connector"></div>
+        <div class="flow-step-label">At 80 mL/kg/day → Fortify to 22 kcal/oz</div>
+        <div class="flow-step-detail">Increase caloric density</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">5</div>
+        <div class="flow-connector"></div>
+        <div class="flow-step-label">Advance 20 mL/kg/day q12h</div>
+        <div class="flow-step-detail">Continue until reaching 120 mL/kg/day</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">6</div>
+        <div class="flow-connector"></div>
+        <div class="flow-step-label">At 120 → Discontinue TPN</div>
+        <div class="flow-step-detail">Keep SMOF at 1.5 g/kg/day</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">7</div>
+        <div class="flow-connector"></div>
+        <div class="flow-step-label">Advance to 140 → Fortify to 24 kcal/oz</div>
+        <div class="flow-step-detail">Increase caloric density</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num goal">✓</div>
+        <div class="flow-step-label" style="color:var(--success);">Goal: 150 mL/kg/day at 24 kcal/oz</div>
+        <div class="flow-step-detail">Discontinue SMOF</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout intolerance">
+    <strong>* If feeding intolerance at any step below goal:</strong>
+    <ul>
+      <li>Increase bolus duration in 30-min increments (max 2 hrs)</li>
+      <li>If persistent, return to previously tolerated step (volume or caloric density)</li>
+    </ul>
+  </div>
+
+  <div class="callout exception">
+    <div class="callout-badge">★ Exception at Goal</div>
+    <p><strong>At goal (150 mL/kg/day, 24 kcal/oz):</strong> If persistent intolerance, reduce volume to 140 mL/kg/day and fortify to 26 kcal/oz.</p>
+  </div>
+
+  <div style="margin-top:12px;text-align:center;">
+    <span style="font-size:12px;color:var(--text-tertiary);font-style:italic;">See Intolerance tab for management criteria →</span>
+  </div>
+</div>
+
+<!-- VOLUMES -->
+<div id="tab-table" class="tab-content">
+  <div class="card">
+    <div class="card-header dark">Nutrition Advancement &amp; Volume Summary</div>
+    <div class="card-body" style="padding:10px 8px;">
+      <div class="table-scroll">
+        <table class="adv-table">
+          <thead>
+            <tr>
+              <th colspan="2">Enteral (EN)</th>
+              <th colspan="2">Parenteral (PN)</th>
+              <th colspan="2">Total (EN+PN)</th>
+            </tr>
+            <tr>
+              <th>mL/kg</th><th>kcal/kg</th>
+              <th>mL/kg</th><th>kcal/kg</th>
+              <th>mL/kg</th><th>kcal/kg</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>20</td><td>10</td><td>60</td><td>60</td><td>80</td><td>70</td></tr>
+            <tr><td>40</td><td>25</td><td>70</td><td>70</td><td>110</td><td>95</td></tr>
+            <tr><td>60</td><td>40</td><td>70</td><td>70</td><td>130</td><td>110</td></tr>
+            <tr><td>80</td><td>60</td><td>60</td><td>60</td><td>140</td><td>120</td></tr>
+            <tr class="note-row"><td colspan="6">↑ Fortify → 22 kcal/oz</td></tr>
+            <tr>
+              <td>120</td><td>90</td>
+              <td colspan="2" style="font-size:11px;color:var(--text-secondary);">Stop TPN<br>Keep SMOF</td>
+              <td>120*</td><td>105</td>
+            </tr>
+            <tr>
+              <td>140</td><td>115</td>
+              <td>–</td>
+              <td style="font-size:11px;color:var(--text-secondary);">15<br><span style="font-size:10px;">(SMOF only)</span></td>
+              <td>140*</td><td>130</td>
+            </tr>
+            <tr class="note-row"><td colspan="6">↑ Fortify → 24 kcal/oz</td></tr>
+            <tr class="goal-row">
+              <td>150</td><td>120</td>
+              <td colspan="2" style="font-size:11px;">Stop SMOF</td>
+              <td>150</td><td>120</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-footnote">*excludes SMOF volume</div>
+    </div>
+  </div>
+</div>
+
+<!-- INTOLERANCE -->
+<div id="tab-intolerance" class="tab-content">
+  <div class="vitals-box">
+    <div class="vitals-box-title">Vitals / Monitoring <span class="vitals-box-subtitle">(with any feed modification)</span></div>
+    <div class="vitals-item">20% increase in avg HR from baseline within 12h</div>
+    <div class="vitals-item">RR &gt;60 bpm or 20% increase from baseline</div>
+    <div class="vitals-item">Decrease in NIRS &gt;20%</div>
+    <div class="vitals-alert">If concerning exam → prompt lab &amp; radiographic assessment</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header accent">Vomiting</div>
+    <div class="card-body" style="padding:10px 16px;">
+      <div class="intol-item">Verify tube position, volume, concentration</div>
+      <div class="intol-item">Correct electrolytes</div>
+      <div class="intol-item">Reposition patient; burp if neonate/infant</div>
+      <div class="intol-item">Address constipation</div>
+      <div class="intol-item">Use BM/DBM at room temp</div>
+      <div class="intol-item">Reduce dysmotility meds (e.g., opioids)</div>
+      <div class="intol-item highlight">Bilious: rule out obstruction (KUB, upper GI)</div>
+      <div class="intol-item">Consider promotility agent</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header accent">Abdominal Distention</div>
+    <div class="card-body" style="padding:10px 16px;">
+      <div class="intol-item">Vent tube</div>
+      <div class="intol-item">Address constipation</div>
+      <div class="intol-item">Reduce dysmotility meds</div>
+      <div class="intol-item">Consider probiotic</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header accent">Abdominal Pain</div>
+    <div class="card-body" style="padding:10px 16px;">
+      <div class="intol-item">Vent tube</div>
+      <div class="intol-item">Address constipation</div>
+      <div class="intol-item">Irritability (no withdrawal): consider gabapentin for visceral hypersensitivity</div>
+      <div class="intol-item">Consider simethicone</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header accent">Diarrhea <span style="font-weight:400;font-size:10.5px;color:var(--text-tertiary);margin-left:4px;text-transform:none;">(&gt;5 stools/24h OR &gt;30 mL/kg/day)</span></div>
+    <div class="card-body" style="padding:10px 16px;">
+      <div class="intol-item">Watery, bloody, or fatty?</div>
+      <div class="intol-item">Correct electrolytes</div>
+      <div class="intol-item">Low-osmolarity enteral rehydration with feeds</div>
+      <div class="intol-item">Adjust bowel regimen if iatrogenic</div>
+      <div class="intol-item">Stool studies if persistent &gt;2 wks (infection – PCR, malabsorption – fecal fat, elastase, reducing substances)</div>
+      <div class="intol-item">Trial lactose withdrawal in persistent cases</div>
+      <div class="intol-item">Consider withdrawal from sedative/analgesic</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header accent">Constipation</div>
+    <div class="card-body" style="padding:10px 16px;">
+      <div class="intol-item">Optimize hydration</div>
+      <div class="intol-item">Correct electrolytes</div>
+      <div class="intol-item">Initiate bowel regimen</div>
+      <div class="intol-item">Add pectin if not fluid restricted</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header accent">Hematochezia</div>
+    <div class="card-body" style="padding:10px 16px;">
+      <div class="intol-item highlight">Refer to hematochezia guideline</div>
+    </div>
+  </div>
+</div>
+
+<!-- CRITERIA -->
+<div id="tab-criteria" class="tab-content">
+  <div class="card">
+    <div class="card-header primary">Inclusion Criteria</div>
+    <div class="card-body">
+      <div class="sub-label">Infants &lt; 90 days meeting ≥ 1 of the following:</div>
+      <div class="pill-list">
+        <span class="pill include">Single ventricle</span>
+        <span class="pill include">LVOT obstruction</span>
+        <span class="pill include">SP shunt / PDA stent</span>
+        <span class="pill include">Large unrepaired PDA</span>
+        <span class="pill include">Truncus / AP window</span>
+        <span class="pill include">MAPCAs</span>
+        <span class="pill include">Weight &lt; 2.5 kg</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header accent">Exclusion Criteria</div>
+    <div class="card-body">
+      <div class="pill-list">
+        <span class="pill exclude">sVAD</span>
+        <span class="pill exclude">Prematurity &lt; 36 wks GA</span>
+        <span class="pill exclude">Recurrent hematochezia</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header success">Criteria for Feeding</div>
+    <div class="card-body">
+      <div class="sub-label">All criteria must be met to initiate feeds:</div>
+      <div class="criteria-item">
+        <div class="criteria-icon green">✓</div>
+        <div>VIS score &lt; 5 (excluding Milrinone)</div>
+      </div>
+      <div class="criteria-item">
+        <div class="criteria-icon green">✓</div>
+        <div>Arterial lactate &lt; 3</div>
+      </div>
+      <div class="criteria-item">
+        <div class="criteria-icon green">✓</div>
+        <div>No severe persistent ileus</div>
+      </div>
+      <div class="criteria-item">
+        <div class="criteria-icon green">✓</div>
+        <div>No escalating respiratory support beyond HFNC, and if on CPAP, pressure ≤ 7</div>
+      </div>
+      <div class="criteria-item">
+        <div class="criteria-icon green">✓</div>
+        <div>No imminent procedure that would require stopping or holding feeds</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <hr class="footer-rule">
+  <div class="footer-text">Heart Center Infant Feeding Guideline · v1.0 · 02.27.26</div>
+</div>
+
+<script>
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(el) { el.classList.remove('active'); });
+  document.getElementById('tab-' + tabId).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
